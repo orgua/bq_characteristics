@@ -29,7 +29,11 @@ from there usable LUTs were derived  (see `YAMLs` in `./result_LUTs`)
 
 ### Boost-Comparison
 
+Efficiency-Plot of one specific LUT for V_Stor = 3 V:
+
 ![boost-meas](./result_LUTs/BQ25570_LUTs_boost_board_A_boost_VCap3V0.png)
+
+Efficiency-Plot of the generalized LUT derived from the datasheet:
 
 ![boost-ds](./result_LUTs/BQ25570_LUTs_boost_datalib.png)
 
