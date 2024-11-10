@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import numpy as np
-
 from matplotlib import pyplot as plt
 
 from eval_kit_behavior_var1.data_capacitor import data_cyclic

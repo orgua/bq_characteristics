@@ -1,8 +1,8 @@
 from pathlib import Path
 
 import numpy as np
-from data_capacitor import data_charge
 from capacitor_shepherd import shp_cap_sim
+from data_capacitor import data_charge
 from matplotlib import pyplot as plt
 
 runtime = 1

@@ -44,8 +44,23 @@ paths_cyclic: dict = {
 
 col_rename: dict = {"Time [s]": "time", "Dbg10": "voltage"}
 
-data_charge: dict = {name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename) for name, path in paths_charge.items()}
-data_discharge: dict = {name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename) for name, path in paths_discharge.items()}
-data_selfdis: dict = {name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename) for name, path in paths_selfdis.items()}
-data_selfvar: dict = {name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename) for name, path in paths_selfvar.items()}
-data_cyclic: dict = {name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename) for name, path in paths_cyclic.items()}
+data_charge: dict = {
+    name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename)
+    for name, path in paths_charge.items()
+}
+data_discharge: dict = {
+    name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename)
+    for name, path in paths_discharge.items()
+}
+data_selfdis: dict = {
+    name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename)
+    for name, path in paths_selfdis.items()
+}
+data_selfvar: dict = {
+    name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename)
+    for name, path in paths_selfvar.items()
+}
+data_cyclic: dict = {
+    name: pd.read_csv(path, sep=",", decimal=".").rename(columns=col_rename)
+    for name, path in paths_cyclic.items()
+}

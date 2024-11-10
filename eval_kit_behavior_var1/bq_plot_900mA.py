@@ -5,7 +5,8 @@ from bq_shepherd import simulate_source
 from matplotlib import pyplot as plt
 from shepherd_core.vsource import ResistiveTarget
 
-from eval_kit_behavior_var1.data_bq import get_bq_analog, get_bq_digital
+from eval_kit_behavior_var1.data_bq import get_bq_analog
+from eval_kit_behavior_var1.data_bq import get_bq_digital
 
 # config - mainly for sim
 path_here = Path(__file__).parent

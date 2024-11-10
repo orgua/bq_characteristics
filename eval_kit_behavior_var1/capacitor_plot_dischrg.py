@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import numpy as np
-
 from capacitor_shepherd import shp_cap_sim
 from matplotlib import pyplot as plt
 
