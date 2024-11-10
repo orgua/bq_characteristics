@@ -14,7 +14,7 @@ for the `BQ25570`-IC.
 
 To recreate the plots from the data you can use the provided python virtual environment (`pipenv`).
 
-"""Shell
+```Shell
 # to install pipenv
 pip install pipenv -U
 
@@ -29,11 +29,11 @@ exit
 
 # for measuring there is an extended dev-environment
 pipenv install -d
-"""
+```
 
 For QA the repo is tested & linted to various tools bundled in a pre-commit.
 To run it, call:
 
-"""Shell
+```Shell
 pre-commit run -a
-"""
+```
