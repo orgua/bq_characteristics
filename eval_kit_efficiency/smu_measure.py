@@ -2,12 +2,14 @@ import time
 from itertools import product
 
 import pandas as pd
-from keithley2600.keithley_driver import KeithleyClass
 from smu_class import SMU
 from tqdm import tqdm
 
 
-def smu_measure_boost(vs_input, is_input, vs_output) -> pd.DataFrame:
+def smu_measure_boost(
+    vs_input: list[float], is_input: list[float], vs_output: list[float]
+) -> pd.DataFrame:
+    """Measures states of BOOST-Converter at a specific set-point."""
     smu = SMU()
     results: list = []  # np.zeros(shape=(len(vs_input) * len(vs_output) * len(is_input), 8))
     total = len(vs_input) * len(vs_output) * len(is_input)
@@ -77,11 +79,12 @@ def smu_measure_boost(vs_input, is_input, vs_output) -> pd.DataFrame:
 
 
 def smu_measure_buck(v_input: list, v_output: float, i_output: list) -> pd.DataFrame:
+    """Measures states of BUCK-Converter at specific set-points."""
     smu = SMU()
     results: list = []
     total = len(v_input) * len(i_output)
 
-    for index, (v_inp, i_out) in tqdm(enumerate(product(v_input, i_output)), total=total):
+    for _, (v_inp, i_out) in tqdm(enumerate(product(v_input, i_output)), total=total):
         # prepare set-point
         smu.set_smu_to_vsource(smu.inp, value_v=v_inp, limit_i=20 * i_out)
         time.sleep(2)
@@ -154,24 +157,3 @@ def smu_measure_buck(v_input: list, v_output: float, i_output: list) -> pd.DataF
         columns=["V_inp_nom", "I_out_nom", "V_inp", "I_inp", "V_out", "I_out", "eta"],
         dtype=float,  # np.float256 ?
     )
-
-
-def old_meas_loop(smu: KeithleyClass, v_inp, i_inp, v_out):
-    is_reached = False
-    time_start = time.time()
-    while time.time() < time_start + 5:
-        vim = smu.inp.measure.v()
-        iim = smu.inp.measure.i()
-        vom = smu.out.measure.v()
-        iom = smu.out.measure.i()
-        is_reached = abs(vim / v_inp - 1) < 0.10 or abs(vim - v_inp) < 0.05  # not that important
-        is_reached &= abs(iim / i_inp - 1) < 0.05
-        is_reached &= abs(vom / v_out - 1) < 0.05
-        is_reached &= iom < 0
-        if time.time() - time_start > 1 * 16:
-            smu.set_smu_off(smu.inp)
-            smu.set_smu_off(smu.out)
-            break
-    if not is_reached:
-        print("SKIP - Timeout while measuring")
-        # continue
