@@ -1,0 +1,51 @@
+2024-11-08 21:02:51.122129:	10	b'Deactivated shepherd kernel module'
+2024-11-08 21:02:52.597049:	10	b'Activated shepherd kernel module'
+2024-11-08 21:02:55.778333:	10	b'Deactivated systemd-timesyncd.service (NTP)'
+2024-11-08 21:02:55.809915:	10	b"Got set of tasks: ['HarvestTask']"
+2024-11-08 21:02:55.831933:	20	b'\n###~###~###~###~###~### Starting HarvestTask ###~###~###~###~###~###\n\noutput_path: /var/shepherd/recordings/LED_003pc.h5\nforce_overwrite: true\nduration: 2\nuse_cal_default: true\nvirtual_harvester:\n  id: 1100\n  name: ivcurve\n  description: Postpone harvesting by sampling ivcurves (voltage stepped as sawtooth-wave)\n  comment: ~110 Hz, Between 50 & 60 Hz line-frequency to avoid standing waves\n  created: 2022-12-12 12:12:12\n  updated_last: 2022-12-12 12:12:12\n  owner: Ingmar\n  group: NES Lab\n  visible2group: true\n  visible2all: true\n  algorithm: ivcurve\n  samples_n: 1000\n  voltage_max_mV: 3500.0\n  voltage_step_mV: 3.5035035035035036\n  rising: false\n  wait_cycles: 0\n\n'
+2024-11-08 21:02:55.846908:	10	b'ShepherdHarvester-Init in harvester-mode'
+2024-11-08 21:02:55.851869:	10	b"\t- set pru0-firmware to 'am335x-pru0-shepherd-HRV-fw'"
+2024-11-08 21:02:58.249065:	10	b"\t- set pru1-firmware to 'am335x-pru1-shepherd-fw'"
+2024-11-08 21:03:00.716528:	10	b'Set power-supplies of shepherd-cape to enabled'
+2024-11-08 21:03:01.718619:	10	b'Set target-io level converter to disabled'
+2024-11-08 21:03:01.722556:	10	b'Set Emulator of shepherd-cape to disabled'
+2024-11-08 21:03:01.725733:	10	b'Set Harvester of shepherd-cape to enabled'
+2024-11-08 21:03:02.227652:	10	b'Shepherd hardware is powered up'
+2024-11-08 21:03:02.228510:	20	b"Switching to 'harvester'-mode"
+2024-11-08 21:03:02.236019:	10	b"sysfs/mode: 'harvester'"
+2024-11-08 21:03:02.238835:	10	b'[Tracer] time-boundaries set to IV[1731092591.00, 1732092591.00], GPIO[0.00, 0.00]'
+2024-11-08 21:03:02.251526:	10	b'Shared RAM-Buffer:\t0x9CA00000, size: 34009636 byte'
+2024-11-08 21:03:02.252326:	10	b'\tIV-Inp:\t8000012 byte'
+2024-11-08 21:03:02.253747:	10	b'\tIV-Out:\t16000008 byte'
+2024-11-08 21:03:02.254125:	10	b'\tGPIO:\t10000008 byte'
+2024-11-08 21:03:02.254421:	10	b'\tUtil:\t9608 byte'
+2024-11-08 21:03:02.718747:	10	b'Writing virtual harvester to sysfs_interface, first values are\n\t[16, 4, 1000, 2500000, 0, 3500000, 3504, 50000000, 179, 10000]'
+2024-11-08 21:03:02.722949:	10	b'Calibration-Settings (harvester):'
+2024-11-08 21:03:02.725454:	10	b"\tdac_V_Hrv: {'gain': 7.629510948348211e-05, 'offset': -0.0, 'unit': 'V'}"
+2024-11-08 21:03:02.726115:	10	b"\tdac_V_Sim: {'gain': 7.629510948348211e-05, 'offset': -0.0, 'unit': 'V'}"
+2024-11-08 21:03:02.726502:	10	b"\tadc_V_Sense: {'gain': 1.953125e-05, 'offset': -0.0, 'unit': 'V'}"
+2024-11-08 21:03:02.726871:	10	b"\tadc_C_Hrv: {'gain': 2.0345052083333335e-07, 'offset': -0.0, 'unit': 'A'}"
+2024-11-08 21:03:02.731189:	10	b'Transfer Calibration-Settings to sysfs_if (2nd row unused by emu):\n52083 0 \n5000 0 \n13744 0'
+2024-11-08 21:03:02.763413:	10	b'[GpioRecorder] was activated'
+2024-11-08 21:03:02.834842:	10	b'[PruRecorder] was activated'
+2024-11-08 21:03:02.911922:	10	b'[KernelMonitor] was activated'
+2024-11-08 21:03:02.974502:	10	b'[PTPMonitor] was activated'
+2024-11-08 21:03:03.120050:	10	b'[SysUtilMonitor] was activated'
+2024-11-08 21:03:03.414077:	10	b'[SheepMonitor] was activated'
+2024-11-08 21:03:04.495598:	10	b'asking kernel module for start at 1731092591.00'
+2024-11-08 21:03:04.497412:	10	b'current state of shepherd kernel module: idle'
+2024-11-08 21:03:04.498604:	10	b'writing start-time = 1731092591 to sysfs'
+2024-11-08 21:03:04.508378:	20	b'waiting 6.49 s until start'
+2024-11-08 21:03:11.015922:	10	b'PRU0 is restarting its main routine, val2=0x0'
+2024-11-08 21:03:11.018626:	20	b'shepherd started! T_sys = 1731092591.018567'
+2024-11-08 21:03:11.023703:	10	b'Duration = 2.0 (forced runtime)'
+2024-11-08 21:03:11.049034:	10	b'Discarded IV-Data / out of time-boundary (t_pru = 1731092590925660000).'
+2024-11-08 21:03:13.132549:	10	b'FINISHED! Out of bound timestamp collected -> begin to exit now'
+2024-11-08 21:03:13.161859:	20	b'[GpioRecorder] recorded 0 events'
+2024-11-08 21:03:13.177332:	20	b'[PruRecorder] recorded 100 events'
+2024-11-08 21:03:13.183519:	10	b'[KernelMonitor] thread ended itself'
+2024-11-08 21:03:13.225877:	20	b'[KernelMonitor] recorded 70 events'
+2024-11-08 21:03:13.237548:	10	b'[PTPMonitor] thread ended itself'
+2024-11-08 21:03:13.285348:	20	b'[PTPMonitor] recorded 0 events'
+2024-11-08 21:03:13.293146:	10	b'[SysUtilMonitor] thread ended itself'
+2024-11-08 21:03:13.353665:	20	b'[SysUtilMonitor] recorded 11 events'

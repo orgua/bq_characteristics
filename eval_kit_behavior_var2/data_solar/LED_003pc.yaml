@@ -1,0 +1,387 @@
+config:
+  output_path: /var/shepherd/recordings/LED_003pc.h5
+  force_overwrite: true
+  output_compression: lzf
+  time_start: null
+  duration: 2
+  abort_on_error: false
+  use_cal_default: true
+  virtual_harvester:
+    id: 1100
+    name: ivcurve
+    description: Postpone harvesting by sampling ivcurves (voltage stepped as sawtooth-wave)
+    comment: ~110 Hz, Between 50 & 60 Hz line-frequency to avoid standing waves
+    created: 2022-12-12 12:12:12
+    updated_last: 2022-12-12 12:12:12
+    owner: Ingmar
+    group: NES Lab
+    visible2group: true
+    visible2all: true
+    algorithm: ivcurve
+    samples_n: 1000
+    voltage_mV: 2500.0
+    voltage_min_mV: 0.0
+    voltage_max_mV: 3500.0
+    current_limit_uA: 50000.0
+    voltage_step_mV: 3.5035035035035036
+    setpoint_n: 0.7
+    interval_ms: 100.0
+    duration_ms: 0.1
+    rising: false
+    enable_linear_extrapolation: true
+    wait_cycles: 0
+  power_tracing:
+    intermediate_voltage: false
+    delay: 0
+    duration: null
+    calculate_power: false
+    samplerate: 100000
+    discard_current: false
+    discard_voltage: false
+  sys_logging:
+    dmesg: true
+    ptp: true
+    shepherd: true
+  verbose: 2
+hostname: sheep0
+mode: harvester
+data:
+  datatype: ivcurve
+  window_samples: 1000
+  _group_info:
+    energy_Ws: 0.0002489988380014768
+    runtime_s: 2.0
+    data_rate_KiB_s: 997
+    file_size_MiB: 1.948
+    valid: true
+  current:
+    _dataset_info:
+      datatype: uint32
+      shape: (200000,)
+      chunks: (10000,)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 0.0001446116394042969
+        min: 0.0
+        max: 0.0003208414713541667
+        std: 0.00013662289237932544
+        si_converted: true
+    description: current [A] = value * gain + offset
+    gain: 2.0345052083333335e-07
+    offset: -0.0
+    unit: A
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (200000,)
+      chunks: (10000,)
+      compression: lzf
+      compression_opts: None
+      time_diffs_s:
+      - 1.0e-05
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0.0
+    unit: s
+  voltage:
+    _dataset_info:
+      datatype: uint32
+      shape: (200000,)
+      chunks: (10000,)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 1.4809901398437497
+        min: 0.0049609375
+        max: 5.11998046875
+        std: 0.7346284290756265
+        si_converted: true
+    description: voltage [V] = value * gain + offset
+    gain: 1.953125e-05
+    offset: -0.0
+    unit: V
+gpio:
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (0,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics: {}
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0
+    unit: s
+  value:
+    _dataset_info:
+      datatype: uint16
+      shape: (0,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics: {}
+    description:
+      0:
+        pru_reg: r31_00
+        name: tgt_gpio0
+        bb_pin: P8_45
+        sys_pin: P8_14
+        sys_reg: '26'
+      1:
+        pru_reg: r31_01
+        name: tgt_gpio1
+        bb_pin: P8_46
+        sys_pin: P8_17
+        sys_reg: '27'
+      2:
+        pru_reg: r31_02
+        name: tgt_gpio2
+        bb_pin: P8_43
+        sys_pin: P8_16
+        sys_reg: '14'
+      3:
+        pru_reg: r31_03
+        name: tgt_gpio3
+        bb_pin: P8_44
+        sys_pin: P8_15
+        sys_reg: '15'
+      4:
+        pru_reg: r31_04
+        name: tgt_gpio4
+        bb_pin: P8_41
+        sys_pin: P8_26
+        sys_reg: '29'
+      5:
+        pru_reg: r31_05
+        name: tgt_gpio5
+        bb_pin: P8_42
+        sys_pin: P8_36
+        sys_reg: '16'
+      6:
+        pru_reg: r31_06
+        name: tgt_gpio6
+        bb_pin: P8_39
+        sys_pin: P8_34
+        sys_reg: '17'
+      7:
+        pru_reg: r31_07
+        name: tgt_uart_rx
+        bb_pin: P8_40
+        sys_pin: P9_26
+        sys_reg: '14'
+      8:
+        pru_reg: r31_08
+        name: tgt_uart_tx
+        bb_pin: P8_27
+        sys_pin: P9_24
+        sys_reg: '15'
+      9:
+        pru_reg: r31_09
+        name: tgt_bat_ok
+        bb_pin: P8_29
+        sys_pin: ''
+        sys_reg: ''
+    unit: n
+kernel:
+  message:
+    _dataset_info:
+      datatype: object
+      shape: (70,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (70,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 1731092585.9765882
+        min: 1731092583.9852402
+        max: 1731092591.6340928
+        std: 1.5303553453323766
+        si_converted: true
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0
+    unit: s
+pru_util:
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (100,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 1731092591.5491242
+        min: 1731092591.0652146
+        max: 1731092592.9025874
+        std: 0.6834977219526632
+        si_converted: true
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0
+    unit: s
+  values:
+    _dataset_info:
+      datatype: uint16
+      shape: (100, 3)
+      chunks: (100, 3)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 1196.3233333333333
+        min: 459.0
+        max: 5439.0
+        std: 1506.1155927713146
+        si_converted: false
+    description: pru0_vsrc_tsample_mean [ns], pru0_vsrc_tsample_max [ns],pru1_gpio_tsample_max
+      [ns],with 10000 ns per sample-step
+    unit: ns, ns, ns
+ptp:
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (0,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics: {}
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0
+    unit: s
+  values:
+    _dataset_info:
+      datatype: int64
+      shape: (0, 3)
+      chunks: (100, 3)
+      compression: None
+      compression_opts: None
+      statistics: {}
+    description: main offset [ns], s2 freq [Hz], path delay [ns]
+    unit: ns, Hz, ns
+sheep:
+  level:
+    _dataset_info:
+      datatype: uint8
+      shape: (51,)
+      chunks: (100,)
+      compression: None
+      compression_opts: None
+      statistics:
+        mean: 11.764705882352942
+        min: 10.0
+        max: 20.0
+        std: 3.812200410828153
+        si_converted: false
+    description: from [0..+10..50] = [NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL]
+    unit: n
+  message:
+    _dataset_info:
+      datatype: object
+      shape: (51,)
+      chunks: (100,)
+      compression: None
+      compression_opts: None
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (51,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 1731092584.0278938
+        min: 1731092571.1221292
+        max: 1731092593.353665
+        std: 5.7731485382876055
+        si_converted: true
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0
+    unit: s
+sys_util:
+  cpu:
+    _dataset_info:
+      datatype: uint8
+      shape: (11,)
+      chunks: (100,)
+      compression: None
+      compression_opts: None
+      statistics:
+        mean: 51.54545454545455
+        min: 8.0
+        max: 100.0
+        std: 38.55188625585391
+        si_converted: false
+    description: cpu_util [%]
+    unit: '%'
+  io:
+    _dataset_info:
+      datatype: uint64
+      shape: (11, 4)
+      chunks: (100, 4)
+      compression: None
+      compression_opts: None
+      statistics:
+        mean: 24206.636363636364
+        min: 0.0
+        max: 978944.0
+        std: 145798.53136560664
+        si_converted: false
+    description: io_read [n], io_write [n], io_read [byte], io_write [byte]
+    unit: n
+  net:
+    _dataset_info:
+      datatype: uint64
+      shape: (11, 2)
+      chunks: (100, 2)
+      compression: None
+      compression_opts: None
+      statistics:
+        mean: 101.54545454545455
+        min: 0.0
+        max: 474.0
+        std: 134.2466276105042
+        si_converted: false
+    description: nw_sent [byte], nw_recv [byte]
+    unit: n
+  ram:
+    _dataset_info:
+      datatype: uint8
+      shape: (11, 2)
+      chunks: (100, 2)
+      compression: None
+      compression_opts: None
+      statistics:
+        mean: 49.54545454545455
+        min: 27.0
+        max: 72.0
+        std: 22.455465568192913
+        si_converted: false
+    description: ram_available [%], ram_used [%]
+    unit: '%'
+  time:
+    _dataset_info:
+      datatype: uint64
+      shape: (11,)
+      chunks: (100,)
+      compression: lzf
+      compression_opts: None
+      statistics:
+        mean: 1731092587.9197915
+        min: 1731092583.6564102
+        max: 1731092592.8438866
+        std: 3.0158890127802707
+        si_converted: true
+    description: system time [s] = value * gain + (offset)
+    gain: 1.0e-09
+    offset: 0
+    unit: s
+uart: {}
