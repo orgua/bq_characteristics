@@ -35,4 +35,4 @@ from there usable LUTs were derived  (see `YAMLs` in `./result_LUTs`)
 
 ### Buck-Comparison
 
-![buck-both](./result_LUTs/BQ25570_LUTs_buck.png)
+![buck-both](./result_LUTs/BQ25570_LUTs_buck.svg)
