@@ -1,6 +1,6 @@
 # Crude Efficiency Model
 
-The quest to recreate the efficiency plots of BQ25570s datasheet. 
+The quest to recreate the efficiency plots of BQ25570s datasheet.
 A boost converter consists of different electronic parts - each has its own characteristic and efficiency.
 An idea for an efficiency-model can be achieved by reading:
 
@@ -27,7 +27,7 @@ doing the same with the model:
 
 ![lutModel](./plot_model_boost.VCap2V5.png)
 
-It is similar, but shows major weaknesses. 
+It is similar, but shows major weaknesses.
 Unfortunately that is one of the better plots.
 Comparing higher VCap shows even bigger differences.
 

@@ -3,6 +3,7 @@
 - slva372d.pdf - Basic Calculation of a Boost Converter's Power Stage
 - sluuaa7a.pdf - BQ25570 EVM users guide
 """
+
 from itertools import product
 from pathlib import Path
 

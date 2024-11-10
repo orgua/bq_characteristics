@@ -3,7 +3,6 @@ from pathlib import Path
 
 import numpy as np
 from matplotlib import pyplot as plt
-
 from model_boost_efficiency import efficiency_boost_datasheet
 
 # config - copied from /eval_kit_efficiency/extract_LUTs_boost.py
@@ -20,12 +19,11 @@ v_inp_min = (2**LUT_input_V_min_log2_uV) * 1e-6
 v_inp_mid = [v_inp_min / 2 + v_inp_min * x for x in range(12)]
 
 for _vc in v_cap:
-
-    #grid_xy = np.asarray(_data["LUT_input_efficiency"])
+    # grid_xy = np.asarray(_data["LUT_input_efficiency"])
     # plt.plot(grid_xy)
-    ii_iter = np.arange(12) # column, i_inp
-    vi_iter = np.arange(12) # row; v_inp
-    eta = np.zeros(shape=(12,12))
+    ii_iter = np.arange(12)  # column, i_inp
+    vi_iter = np.arange(12)  # row; v_inp
+    eta = np.zeros(shape=(12, 12))
     for _ii, _vi in product(ii_iter, vi_iter):
         i_inp = i_inp_mid[_ii]
         v_inp = v_inp_mid[_vi]
