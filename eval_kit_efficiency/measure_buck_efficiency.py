@@ -1,8 +1,9 @@
-""" Measures specified Grid and stores data sub-folder.
+"""Measures specified Grid and stores data sub-folder.
 
 NOTE: needs SMU connected to BQ Eval Kit.
 
 """
+
 from pathlib import Path
 
 import pandas as pd

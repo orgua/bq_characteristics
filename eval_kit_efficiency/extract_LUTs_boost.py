@@ -1,8 +1,8 @@
-"""
-Convert measurements stored in CSV to Shepherds YAML (print to console).
+"""Convert measurements stored in CSV to Shepherds YAML (print to console).
 
 NOTE: Edge-Regions are often not measured correctly, so they have to be manually corrected afterward.
 """
+
 from pathlib import Path
 
 import numpy as np

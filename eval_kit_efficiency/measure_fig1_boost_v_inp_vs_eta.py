@@ -1,3 +1,8 @@
+"""First try to reproduce Figure 1 of BQ-Datasheet.
+
+NOTE: Broken, data is missing
+"""
+
 from itertools import product
 from pathlib import Path
 
