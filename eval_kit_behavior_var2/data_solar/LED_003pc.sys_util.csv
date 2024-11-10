@@ -1,4 +1,4 @@
-﻿system time [s] = value * gain + (offset); cpu_util [%]; io_read [n]; io_write [n]; io_read [byte]; io_write [byte]; nw_sent [byte]; nw_recv [byte]; ram_available [%]; ram_used [%]
+system time [s] = value * gain + (offset); cpu_util [%]; io_read [n]; io_write [n]; io_read [byte]; io_write [byte]; nw_sent [byte]; nw_recv [byte]; ram_available [%]; ram_used [%]
 2024-11-08 21:03:03.656410; 41.0; 1.0; 1.0; 1.0; 1.0; 1.0; 1.0; 73.0; 28.0
 2024-11-08 21:03:04.152240; 101.0; 1.0; 1.0; 1.0; 1.0; 1.0; 1.0; 73.0; 28.0
 2024-11-08 21:03:04.929285; 101.0; 1.0; 1.0; 1.0; 1.0; 237.0; 269.0; 73.0; 28.0

@@ -1,4 +1,4 @@
-﻿system time [s] = value * gain + (offset); pru0_vsrc_tsample_mean [ns]; pru0_vsrc_tsample_max [ns],pru1_gpio_tsample_max [ns],with 10000 ns per sample-step
+system time [s] = value * gain + (offset); pru0_vsrc_tsample_mean [ns]; pru0_vsrc_tsample_max [ns],pru1_gpio_tsample_max [ns],with 10000 ns per sample-step
 2024-11-08 21:03:11.065215; 460.0; 645.0; 795.0
 2024-11-08 21:03:11.065215; 460.0; 500.0; 795.0
 2024-11-08 21:03:11.065215; 462.0; 645.0; 795.0
