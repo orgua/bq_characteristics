@@ -15,6 +15,14 @@ Components described from front to back
 - resistive load on output of buck-converter
 	- Open Circuit (OC), 1k, 100 ohm
 
+### Analog Parts
+
+R100 = 99.79 Ohm,
+
+R1k = 983.263 Ohm,
+
+C_Stor = 79uF,
+
 ## Measurements
 
 - ivcurves of solar cells, recorded with shepherd harvester
@@ -22,18 +30,15 @@ Components described from front to back
 	- V_IN - output of solar cell, input of BQ
 	- V_BAT - voltage over storage capacity on Eval Kit
 	- V_Out - output of buck-converter, input of load
-
+- BAT_OK signal was recorded digitally by the logic pro
+	- BAT_OK is also enable-signal for buck-converter of BQ
+- Capacitor charging / discharge-curve (RC-characteristic)
+  - 1k + various capacitors
+  - programmable power-source 0V and 5V
+  - Logic Pro 16 to record trigger and voltage over capacitor
 
 NOTE: the .sal-files can be opened by the freely available Logic 2 software.
 	-> traces can be exported to csv via file -> export raw data
-
-## Analog Parts
-
-R100 = 99.79 Ohm,
-
-R1k = 983.263 Ohm,
-
-C_Stor = 79uF,
 
 ## Experiments
 
@@ -62,7 +67,35 @@ C_Stor = 79uF,
 
 NOTE: all measurements are started with a disabled LED to show startup-behavior of the IC.
 
+## Results and Conclusions
+
+### Match with Shepherds VSrc
+
+While the VSrc could be configured to loosely match the behavior for 900mA LED-current
+
+![BQ900](./bq_plot_900mA.png)
+
+The same config does not work for 400mA LED-current
+
+![BQ400](./bq_plot_900mA.png)
+
+### Capacitor
+
+The storage capacitor influences the behavior of the BQ-IC.
+Lower capacitance means higher switching rates and lower on-durations.
+Looking at the charge- and discharge-plot a quicker transition is shown which implies the capacitance is lower than the nominal 100 uF.
+Comparing the MLCC to a tantal, we see, that the tantal-capacitor is almost behaving like an ideal capacitor.
+
+![CapCharge](./capacitor_plot_charge.png)
+![CapDisCharge](./capacitor_plot_dischrg.png)
+
+Wenn looking at the self-discharge the tantal-capacitor shows a much lower discharge.
+
+![CapDis](./capacitor_plot_selfdis.png)
+
 ## Flaws of the setup
+
+Examining the recorded BQ-behavior some weird effects can be spotted.
 
 ### VOC of Solar Cell is too high
 

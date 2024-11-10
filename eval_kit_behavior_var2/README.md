@@ -90,6 +90,6 @@ Adding the related `IVCurve` and knowledge of the 1k resistive load gives us als
 
 The storage capacitor influences the behavior of the BQ-IC.
 Lower capacitance means higher switching rates and lower on-durations.
-Looking at the charge- and discharge-plot shows a quicker transition which implies the capacitance is lower than the nominal 100 uF.
+Looking at the charge- and discharge-plot a quicker transition is shown which implies the capacitance is lower than the nominal 100 uF.
 
 ![cap](./plot_capacitor.png)
