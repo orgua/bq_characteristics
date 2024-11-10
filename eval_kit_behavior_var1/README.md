@@ -101,11 +101,11 @@ Examining the recorded BQ-behavior some weird effects can be spotted.
 
 Looking at `R1k, LED 1100mA.sal`
 
-![900mA_overview](media/R1k, LED 1100mA - overview.png)
+![900mA_overview](./media/R1k_LED_1100mA_overview.png)
 
 and the VOC-Measurement in detail
 
-![900mA_overview](media/R1k, LED 1100mA - detail VOC.png)
+![900mA_overview](media/R1k_LED_1100mA_detail_VOC.png)
 
 The sudden spike of V_IN to 3.93 V is the beginning of the VOC-measurement (233 ms duration).
 The boost-converter is disabled, V_IN is shortly on a plateau, but soon begins to fall, similar to V_BAT falling. Looking closer at these two voltages:
@@ -136,7 +136,7 @@ V_BAT is limited to < 4.2 V on the eval-board to protect a potential LiOn-batter
 As a direct result of the low over-voltage-limit the set-point is too close to the V_Bat under-voltage-protection-limit.
 Trace `R1k, LED 700mA.sal` shows that the VOC-measurement has to be interrupted due to V_BAT falling below 2.0 V:
 
-![700mA_VOC](media/R1k, LED 700mA - detail VOC.png)
+![700mA_VOC](media/R1k_LED_700mA_detail_VOC.png)
 
 Another side effect of the under-voltage-protection is that V_OUT of 1.8 V can't be maintained.
 Every drop below V_BAT < 2.0 V shows a drop in V_OUT, even before the output is completely disconnected.
@@ -151,7 +151,7 @@ This setup enables the buck-converter far too early and long.
 V_BAT moves between 2.8 V and 1.9 V (under voltage protection).
 The usable charge of the capacitor is far too small.
 
-![700mACap](media/R1k, LED 700mA - detail cap.png)
+![700mACap](media/R1k_LED_700mA_detail_cap.png)
 
 NOTE: having the capacity on V_STOR would be making the setup less complex, as there would be no disconnecting anymore.
 The datasheet of the BQ-IC recommends 100 uF on V_BAT.
