@@ -101,7 +101,7 @@ for ax in axs:
 
 # TODO: add PwrIn, PwrOut
 
-plt.savefig(Path(__file__).with_suffix(".png"))
+# plt.savefig(Path(__file__).with_suffix(".png"))
 plt.savefig(Path(__file__).with_suffix(".svg"))
 plt.close(fig)
 plt.clf()
