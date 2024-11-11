@@ -32,7 +32,7 @@ for ax in axs:
     ax.grid(True)
 
 
-plt.savefig(Path(__file__).with_suffix(".png"))
+# plt.savefig(Path(__file__).with_suffix(".png"))
 plt.savefig(Path(__file__).with_suffix(".svg"))
 plt.close(fig)
 plt.clf()
