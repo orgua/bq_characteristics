@@ -84,7 +84,7 @@ Analysing `BAT_OK` gives us:
 
 Adding the related `IVCurve` and knowledge of the 1k resistive load gives us also needed insight to calculate the efficiency at that set-point
 
-![BQ-char](./plot_bq_statistics.svg)
+![BQ-char](plot_statistics_bq.svg)
 
 ### Capacitor
 
@@ -92,4 +92,4 @@ The storage capacitor influences the behavior of the BQ-IC.
 Lower capacitance means higher switching rates and lower on-durations.
 Looking at the charge- and discharge-plot a quicker transition is shown which implies the capacitance is lower than the nominal 100 uF.
 
-![cap](./plot_capacitor.png)
+![cap](plot_capacitor.png)
