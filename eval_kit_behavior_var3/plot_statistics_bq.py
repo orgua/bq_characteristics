@@ -17,6 +17,8 @@ result_eval: dict = {
     "efficiency2": [],
 }
 
+R_out = 984  # measured with multimeter
+
 for name in bq_names:
     # first cmd throws away 1st & last entry to avoid partially sampled durations
     data = get_bq_digital(name).iloc[1:-1, :]
@@ -45,10 +47,7 @@ for name in bq_names:
     P_inp_max = (ivcurve["Voltage [V]"] * ivcurve["Current [A]"]).max()
 
     data_analog = get_bq_analog(name)
-    R_out = 1000
-    P_out = data_analog["V_OUT"] * data_analog["V_OUT"] / R_out
-    P_out[data["BAT_OK"] < 1] = 0.0 # switched output!
-    # duration = data_analog["Time [s]"].iloc[-1] - data_analog["Time [s]"].iloc[0]
+
     i_array = ivcurve["Current [A]"].to_numpy()
     v_array = ivcurve["Voltage [V]"].to_numpy()
 
@@ -59,7 +58,7 @@ for name in bq_names:
 
     P_inp = data_analog["V_IN"] * data_analog["I_IN"]
     P_inp_mean = P_inp.sum() / len(P_inp)
-    P_out_mean = P_out.sum() / len(P_out)
+    P_out_mean = (duty_on / 100) * data_analog["V_OUT"].mean() ** 2 / R_out
     # save stats for plots
     result_eval["name"].append(name)
     result_eval["intensity"].append(float(name[4:6]))
@@ -90,7 +89,7 @@ axs[2].set_yscale("log")
 axs[3].set_ylabel("Efficiency [%]")
 axs[3].plot(result_eval["intensity"], result_eval["efficiency1"])
 axs[3].plot(result_eval["intensity"], result_eval["efficiency2"])
-axs[2].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
+axs[3].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
 axs[3].set_xlabel("LED-Intensity [%]")
 axs[3].set_xticks(np.arange(2, 23, 2))
 

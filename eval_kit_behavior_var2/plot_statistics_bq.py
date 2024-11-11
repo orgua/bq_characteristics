@@ -17,6 +17,8 @@ result_eval: dict = {
     "efficiency2": [],
 }
 
+R_out = 1000
+
 for name in bq_names:
     # first cmd throws away 1st & last entry to avoid partially sampled durations
     data = get_bq_digital(name).iloc[1:-1, :]
@@ -45,7 +47,7 @@ for name in bq_names:
     P_inp_max = (ivcurve["Voltage [V]"] * ivcurve["Current [A]"]).max()
 
     data_analog = get_bq_analog(name)
-    R_out = 1000
+
     P_out = data_analog["V_OUT"] * data_analog["V_OUT"] / R_out
     # duration = data_analog["Time [s]"].iloc[-1] - data_analog["Time [s]"].iloc[0]
     i_array = ivcurve["Current [A]"].to_numpy()
@@ -89,7 +91,7 @@ axs[2].set_yscale("log")
 axs[3].set_ylabel("Efficiency [%]")
 axs[3].plot(result_eval["intensity"], result_eval["efficiency1"])
 axs[3].plot(result_eval["intensity"], result_eval["efficiency2"])
-axs[2].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
+axs[3].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
 axs[3].set_xlabel("LED-Intensity [%]")
 axs[3].set_xticks(np.arange(2, 23, 2))
 

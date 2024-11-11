@@ -33,7 +33,7 @@ cfg_bq25570_base = VirtualSourceConfig(
     name="BQ25570",
     harvester=VirtualHarvesterConfig(
         name="mppt_bq_solar",
-        #rising=False,
+        # rising=False,
         enable_linear_extrapolation=False,  # disable newer feature
     ),
     enable_feedback_to_hrv=False,  # disable newer feature
@@ -57,7 +57,7 @@ cfg_bq25570_eval = VirtualSourceConfig(
     name="BQ25570",
     harvester=VirtualHarvesterConfig(
         name="mppt_bq_solar",
-        #rising=False,
+        # rising=False,
         enable_linear_extrapolation=True,
         interval_ms=16650,  # from recording
         duration_ms=255,  # from recording

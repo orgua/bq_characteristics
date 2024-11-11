@@ -72,8 +72,8 @@ axs[3].plot(eval_pwrgd["Time [s]"], 0.9 * eval_pwrgd["BAT_OK"] + 1.0)
 axs[3].legend(["Sim", "Eval"], loc="upper right")
 
 axs[4].set_ylabel("Power Sim [mW]")
-axs[4].plot(sim_stats["time"], 1e3*sim_stats["P_inp"])
-axs[4].plot(sim_stats["time"], 1e3*sim_stats["P_out"], alpha=0.7)
+axs[4].plot(sim_stats["time"], 1e3 * sim_stats["P_inp"])
+axs[4].plot(sim_stats["time"], 1e3 * sim_stats["P_out"], alpha=0.7)
 axs[4].legend(["P_inp (Sim)", "P_out (Sim)"], loc="upper right")
 
 axs[4].set_xlabel("Runtime [s]")
