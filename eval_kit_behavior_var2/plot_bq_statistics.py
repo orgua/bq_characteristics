@@ -13,7 +13,8 @@ result_eval: dict = {
     "duty_on": [],
     "rate_per_min": [],
     "durations_on": [],
-    "efficiency": [],
+    "efficiency1": [],
+    "efficiency2": [],
 }
 
 for name in bq_names:
@@ -47,15 +48,25 @@ for name in bq_names:
     R_out = 1000
     P_out = data_analog["V_OUT"] * data_analog["V_OUT"] / R_out
     # duration = data_analog["Time [s]"].iloc[-1] - data_analog["Time [s]"].iloc[0]
+    i_array = ivcurve["Current [A]"].to_numpy()
+    v_array = ivcurve["Voltage [V]"].to_numpy()
+
+    # look for nearest voltage in ivcurve and store corresponding current
+    data_analog["I_IN"] = data_analog["V_IN"].apply(
+        lambda _v: i_array[(np.abs(v_array - _v)).argmin()]
+    )
+
+    P_inp = data_analog["V_IN"] * data_analog["I_IN"]
+    P_inp_mean = P_inp.sum() / len(P_inp)
     P_out_mean = P_out.sum() / len(P_out)
-    efficiency = 100 * P_out_mean / P_inp_max
     # save stats for plots
     result_eval["name"].append(name)
     result_eval["intensity"].append(float(name[4:6]))
     result_eval["duty_on"].append(duty_on)
     result_eval["rate_per_min"].append(rate_per_min)
     result_eval["durations_on"].append(durations_on)
-    result_eval["efficiency"].append(efficiency)
+    result_eval["efficiency1"].append(100 * P_out_mean / P_inp_mean)
+    result_eval["efficiency2"].append(100 * P_out_mean / P_inp_max)
 
 
 fig, axs = plt.subplots(4, 1, sharex="all", figsize=(10, 2 * 6), layout="tight")
@@ -76,7 +87,9 @@ axs[2].legend(["min", "mean", "max"], loc="lower right")
 axs[2].set_yscale("log")
 
 axs[3].set_ylabel("Efficiency [%]")
-axs[3].plot(result_eval["intensity"], result_eval["efficiency"])
+axs[3].plot(result_eval["intensity"], result_eval["efficiency1"])
+axs[3].plot(result_eval["intensity"], result_eval["efficiency2"])
+axs[2].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
 axs[3].set_xlabel("LED-Intensity [%]")
 axs[3].set_xticks(np.arange(2, 23, 2))
 
@@ -86,7 +99,7 @@ for ax in axs:
     ax.get_xaxis().get_major_formatter().set_useOffset(False)
     ax.grid(True)
 
-# TODO: add efficiency, PwrIn, PwrOut
+# TODO: add PwrIn, PwrOut
 
 plt.savefig(Path(__file__).with_suffix(".png"))
 plt.savefig(Path(__file__).with_suffix(".svg"))
