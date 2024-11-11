@@ -19,6 +19,23 @@ data: dict = {
     "LED 22 %, 1k Load": "LED_022pc_1k",
 }
 
+data_ts_voc: dict = {  # timestamp of first recorded VOC-meas
+    "LED  3 %, 1k Load": 7.672,
+    "LED  4 %, 1k Load": 10.953,
+    "LED  4 %, no Load": 11.633,  # just a guess
+    "LED  5 %, 1k Load": 3.815,
+    "LED  6 %, 1k Load": 13.722,
+    "LED  8 %, 1k Load": 13.901,
+    "LED 10 %, 1k Load": 12.863,
+    "LED 12 %, 1k Load": 13.109,
+    "LED 14 %, 1k Load": 14.442,
+    "LED 15 %, 1k Load": 4.383,
+    "LED 16 %, 1k Load": 15.952,
+    "LED 18 %, 1k Load": 14.619,
+    "LED 20 %, 1k Load": 10.001,
+    "LED 22 %, 1k Load": 14.375,
+}
+
 data_names: list = list(data.keys())
 
 path_here = Path(__file__).parent.absolute()
