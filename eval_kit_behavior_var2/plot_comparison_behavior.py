@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from bq_shepherd import cfg_bq25570_eval
+from bq_shepherd import cfg_bq25570_eval, cfg_bq25570_base
 from bq_shepherd import simulate_source
 from data_bq import data_names as bq_names
 from data_bq import get_bq_analog
@@ -10,12 +10,12 @@ from data_solar import get_ivcurve
 from matplotlib import pyplot as plt
 from shepherd_core.vsource import ResistiveTarget
 
-from eval_kit_behavior_var2.data_bq import data_ts_voc
+from data_bq import data_ts_voc
 
 # config - mainly for sim
 path_here = Path(__file__).parent
 target = ResistiveTarget(R_Ohm=1000, controlled=False)
-eval_runtime = 4
+eval_runtime = .4
 
 for name, path in solar_paths.items():
     print(f"now simulating {name}, path = {path}")
@@ -24,7 +24,7 @@ for name, path in solar_paths.items():
     sim_stats = simulate_source(
         path_ivcurve=path,
         target=target,
-        config=cfg_bq25570_eval,
+        config=cfg_bq25570_base,
         runtime=eval_runtime,
     )
 
@@ -74,8 +74,8 @@ for name, path in solar_paths.items():
     axs[2].legend(["Sim", "Eval"], loc="upper right")
 
     axs[3].set_ylabel("PwrGood [n]")
-    axs[3].plot(sim_stats["time"], 0.9 * sim_stats["PwrGood"])
-    axs[3].plot(eval_pwrgd["Time [s]"], 0.9 * eval_pwrgd["BAT_OK"] + 1.0)
+    axs[3].plot(sim_stats["time"], sim_stats["PwrGood"])
+    axs[3].plot(eval_pwrgd["Time [s]"], eval_pwrgd["BAT_OK"])
     axs[3].legend(["Sim", "Eval"], loc="upper right")
 
     axs[4].set_ylabel("Power Sim [mW]")

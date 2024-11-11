@@ -141,14 +141,16 @@ def simulate_source(
         leave=False,
     ):
         _t = time_s[_idx : (_idx + window_size)]
+        _v_out = np.zeros(shape=v_uV.shape)
+        _i_out = np.zeros(shape=i_nA.shape)
         for _n in range(window_size):
-            v_uV[_n] = src.iterate_sampling(
+            _v_out[_n] = src.iterate_sampling(
                 V_inp_uV=int(v_uV[_n]),
                 I_inp_nA=int(i_nA[_n]),
                 I_out_nA=i_out_nA,
             )
-            i_out_nA = target.step(int(v_uV[_n]), pwr_good=src.cnv.get_power_good())
-            i_nA[_n] = i_out_nA
+            i_out_nA = target.step(int(_v_out[_n]), pwr_good=src.cnv.get_power_good())
+            _i_out[_n] = i_out_nA
 
             if stats_internal is not None:
                 stats_internal[stats_sample] = [
@@ -157,20 +159,20 @@ def simulate_source(
                     src.cnv.V_input_request_uV * 1e-6,  # V
                     src.hrv.voltage_set_uV * 1e-6,
                     src.cnv.V_mid_uV * 1e-6,
-                    v_uV[_n] * 1e-6,
-                    src.hrv.current_hold * 1e-6,  # mA
-                    src.hrv.current_delta * 1e-6,
-                    i_out_nA * 1e-6,
-                    src.cnv.P_inp_fW * 1e-12,  # mW
-                    src.cnv.P_out_fW * 1e-12,
+                    _v_out[_n] * 1e-6,
+                    src.hrv.current_hold * 1e-9,  # A
+                    src.hrv.current_delta * 1e-9,
+                    i_out_nA * 1e-9,
+                    src.cnv.P_inp_fW * 1e-15,  # W
+                    src.cnv.P_out_fW * 1e-15,
                     src.cnv.get_power_good(),
                 ]
                 stats_sample += 1
 
-        e_out_Ws += (v_uV * i_nA).sum() * 1e-15 * sample_interval_s
+        e_out_Ws += (_v_out * _i_out).sum() * 1e-15 * sample_interval_s
         if path_output:
-            v_out = cal_out.voltage.si_to_raw(1e-6 * v_uV)
-            i_out = cal_out.current.si_to_raw(1e-9 * i_nA)
+            v_out = cal_out.voltage.si_to_raw(1e-6 * _v_out)
+            i_out = cal_out.current.si_to_raw(1e-9 * _i_out)
             file_out.append_iv_data_raw(_t, v_out, i_out)
 
     stack.close()
