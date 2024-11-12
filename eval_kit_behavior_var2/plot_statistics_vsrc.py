@@ -1,8 +1,8 @@
 from pathlib import Path
 
 import numpy as np
-from bq_shepherd import cfg_bq25570_eval
-from bq_shepherd import simulate_source
+from shepherd_cfg_bq import cfg_bq25570_eval
+from shepherd_sim_vsrc import simulate_source
 from data_solar import data_paths as solar_paths
 from data_solar import get_ivcurve
 from matplotlib import pyplot as plt
@@ -29,15 +29,14 @@ for name, path in solar_paths.items():
         path_ivcurve=path,
         target=target,
         config=cfg_bq25570_eval,
-        runtime=50,
+        runtime=eval_runtime,
     )
 
     result_eval["name"].append(name)
     result_eval["intensity"].append(float(name[4:6]))
     result_eval["duty_on"].append(sim_stats["PwrGood"].sum() / len(sim_stats["PwrGood"]))
-    result_eval["rate_per_min"].append(0)
-    result_eval["durations_on"].append([0])
 
+    # calculate two kinds of efficiency
     P_inp_max = float((ivcurve["Voltage [V]"] * ivcurve["Current [A]"]).max())
     P_inp_mean = float(sim_stats["P_inp"].sum()) / len(sim_stats["P_inp"])
     P_out_mean = float(sim_stats["P_out"].sum()) / len(sim_stats["P_out"])
@@ -47,9 +46,25 @@ for name, path in solar_paths.items():
         result_eval["efficiency1"].append(0)
     result_eval["efficiency2"].append(min(100.0, 100 * P_out_mean / P_inp_max))
 
-    # filter_on = data["BAT_OK"] == 1
-    # durations_on = data.loc[filter_on, "duration"].to_numpy()
-    # rate_per_min = filter_on.sum() / time_total * 60.0
+    # generate BAT_OK_flank-timestamps
+    bat_ok_long = sim_stats["PwrGood"].to_numpy()
+    filter_flanks = (bat_ok_long[1:] - bat_ok_long[:-1]) != 0
+    bat_ok_short = bat_ok_long[1:]
+    bat_ok = bat_ok_short[filter_flanks != 0]
+
+    # get matching TS for bat_ok_short
+    timestamps = (sim_stats["time"].to_numpy()[1:])[filter_flanks]
+    if timestamps.shape[0] < 2:
+        print(f"skipping {name} due to low BAT-OK activity")
+        result_eval["rate_per_min"].append(0)
+        result_eval["durations_on"].append(0)
+        continue
+    durations = timestamps[1:] - timestamps[:-1]
+    time_total = timestamps[-1] - timestamps[0]
+    filter_on = bat_ok == 1
+
+    result_eval["rate_per_min"].append(np.sum(filter_on) / time_total * 60.0)
+    result_eval["durations_on"].append(durations[filter_on[1:]])
 
 
 fig, axs = plt.subplots(4, 1, sharex="all", figsize=(10, 2 * 6), layout="tight")
@@ -63,16 +78,16 @@ axs[1].set_ylabel("Switch Rate [n/min]")
 axs[1].plot(result_eval["intensity"], result_eval["rate_per_min"])
 
 axs[2].set_ylabel("On-duration [s]")
-# axs[2].plot(result_eval["intensity"], [_x.min() for _x in result_eval["durations_on"]])
-# axs[2].plot(result_eval["intensity"], [_x.mean() for _x in result_eval["durations_on"]])
-# axs[2].plot(result_eval["intensity"], [_x.max() for _x in result_eval["durations_on"]])
-# axs[2].legend(["min", "mean", "max"], loc="lower right")
-# axs[2].set_yscale("log")
+axs[2].plot(result_eval["intensity"], [np.min(_x) for _x in result_eval["durations_on"]])
+axs[2].plot(result_eval["intensity"], [np.mean(_x) for _x in result_eval["durations_on"]])
+axs[2].plot(result_eval["intensity"], [np.max(_x) for _x in result_eval["durations_on"]])
+axs[2].legend(["min", "mean", "max"], loc="lower right")
+axs[2].set_yscale("log")
 
 axs[3].set_ylabel("Efficiency [%]")
 axs[3].plot(result_eval["intensity"], result_eval["efficiency1"])
 axs[3].plot(result_eval["intensity"], result_eval["efficiency2"])
-axs[2].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
+axs[3].legend(["vs. actual Input", "vs. max of IVCurve"], loc="lower right")
 axs[3].set_xlabel("LED-Intensity [%]")
 axs[3].set_xticks(np.arange(2, 23, 2))
 
@@ -82,7 +97,7 @@ for ax in axs:
     ax.get_xaxis().get_major_formatter().set_useOffset(False)
     ax.grid(True)
 
-plt.savefig(Path(__file__).with_suffix(".png"))
+# plt.savefig(Path(__file__).with_suffix(".png"))
 plt.savefig(Path(__file__).with_suffix(".svg"))
 plt.close(fig)
 plt.clf()

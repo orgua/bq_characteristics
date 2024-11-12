@@ -91,7 +91,7 @@ axs[2].set_yscale("log")
 axs[3].set_ylabel("Efficiency [%]")
 axs[3].plot(result_eval["intensity"], result_eval["efficiency1"])
 axs[3].plot(result_eval["intensity"], result_eval["efficiency2"])
-axs[3].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
+axs[3].legend(["vs. actual Input", "vs. max of IVCurve"], loc="lower right")
 axs[3].set_xlabel("LED-Intensity [%]")
 axs[3].set_xticks(np.arange(2, 23, 2))
 
