@@ -1,12 +1,12 @@
 from pathlib import Path
 
 import numpy as np
-from shepherd_cfg_bq import cfg_bq25570_eval
-from shepherd_sim_vsrc import simulate_source
 from data_solar import data_paths as solar_paths
 from data_solar import get_ivcurve
 from matplotlib import pyplot as plt
+from shepherd_cfg_bq import cfg_bq25570_eval
 from shepherd_core.vsource import ResistiveTarget
+from shepherd_sim_vsrc import simulate_source
 
 result_eval: dict = {
     "name": [],

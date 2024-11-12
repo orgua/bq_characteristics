@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from shepherd_cfg_bq import cfg_bq25570_base, cfg_bq25570_eval
-from shepherd_sim_vsrc import simulate_source
 from data_bq import data_names as bq_names
 from data_bq import data_ts_voc
 from data_bq import get_bq_analog
@@ -9,7 +7,9 @@ from data_bq import get_bq_digital
 from data_solar import data_paths as solar_paths
 from data_solar import get_ivcurve
 from matplotlib import pyplot as plt
+from shepherd_cfg_bq import cfg_bq25570_eval
 from shepherd_core.vsource import ResistiveTarget
+from shepherd_sim_vsrc import simulate_source
 
 # config - mainly for sim
 path_here = Path(__file__).parent
@@ -78,8 +78,8 @@ for name, path in solar_paths.items():
     axs[3].legend(["Sim", "Eval"], loc="upper right")
 
     axs[4].set_ylabel("Power Sim [mW]")
-    axs[4].plot(sim_stats["time"], 1e3 * sim_stats["P_inp"], color='green')
-    axs[4].plot(sim_stats["time"], 1e3 * sim_stats["P_out"], color='red', alpha=0.7)
+    axs[4].plot(sim_stats["time"], 1e3 * sim_stats["P_inp"], color="green")
+    axs[4].plot(sim_stats["time"], 1e3 * sim_stats["P_out"], color="red", alpha=0.7)
     axs[4].legend(["P_inp (Sim)", "P_out (Sim)"], loc="upper right")
 
     axs[4].set_xlabel("Runtime [s]")

@@ -86,6 +86,24 @@ Adding the related `IVCurve` and knowledge of the 1k resistive load gives us als
 
 ![BQ-char](plot_statistics_bq.svg)
 
+### VSource
+
+![VSrc-char](plot_statistics_vsrc.svg)
+
+### Comparison of Behavior
+
+3 % Intensity
+
+![Comp3](plot_comparison_behavior.LED%20%203%20%25.png)
+
+14 % Intensity
+
+![Comp3](plot_comparison_behavior.LED%20%203%20%25.png)
+
+18 % Intensity
+
+![Comp3](plot_comparison_behavior.LED%20%203%20%25.png)
+
 ### Capacitor
 
 The storage capacitor influences the behavior of the BQ-IC.

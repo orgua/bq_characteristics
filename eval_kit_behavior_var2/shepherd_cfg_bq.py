@@ -1,7 +1,5 @@
-
 from shepherd_core.data_models import VirtualHarvesterConfig
 from shepherd_core.data_models import VirtualSourceConfig
-
 
 # baseline vsrc
 # - feature-rollback to mid 2024 (core-lib v2024.8.2)
