@@ -10,3 +10,5 @@ Experiment similar to `_Var2`-measurements, but with
 Results are similar to `_Var2`, but with a slightly higher efficiency.
 
 ![BQ-char](plot_statistics_bq.svg)
+
+
