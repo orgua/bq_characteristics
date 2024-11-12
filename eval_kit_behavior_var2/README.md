@@ -98,11 +98,11 @@ Adding the related `IVCurve` and knowledge of the 1k resistive load gives us als
 
 14 % Intensity
 
-![Comp3](plot_comparison_behavior.LED%20%203%20%25.png)
+![Comp3](plot_comparison_behavior.LED%2014%20%25.png)
 
 18 % Intensity
 
-![Comp3](plot_comparison_behavior.LED%20%203%20%25.png)
+![Comp3](plot_comparison_behavior.LED%2018%20%25.png)
 
 ### Capacitor
 
