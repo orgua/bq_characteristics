@@ -3,12 +3,21 @@ from pathlib import Path
 import pandas as pd
 
 data: dict = {
-    "LED  400mA, open-circuit": "OC, LED 400mA",
+    # "LED  400mA, open-circuit": "OC, LED 400mA",
     "LED  400mA, 1000R Load": "R1k, LED 400mA",
     "LED  700mA, 1000R Load": "R1k, LED 700mA",
     "LED  900mA, 1000R Load": "R1k, LED 900mA",
     "LED 1100mA, 1000R Load": "R1k, LED 1100mA",
-    "LED  400mA, 100R Load": "R100, LED 400mA",
+    # "LED  400mA, 100R Load": "R100, LED 400mA",
+}
+
+data_ts_voc: dict = {  # timestamp of first recorded VOC-meas
+    "LED  400mA, open-circuit": 9.436,
+    "LED  400mA, 1000R Load": 22.590,
+    "LED  700mA, 1000R Load": 22.743,
+    "LED  900mA, 1000R Load": 21.475,
+    "LED 1100mA, 1000R Load": 21.279,
+    "LED  400mA, 100R Load": 23.005,
 }
 
 data_names: list = list(data.keys())
