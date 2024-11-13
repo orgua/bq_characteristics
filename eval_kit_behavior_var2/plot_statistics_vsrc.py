@@ -34,7 +34,7 @@ for name, path in solar_paths.items():
 
     result_eval["name"].append(name)
     result_eval["intensity"].append(float(name[4:6]))
-    result_eval["duty_on"].append(sim_stats["PwrGood"].sum() / len(sim_stats["PwrGood"]))
+    result_eval["duty_on"].append(100 * sim_stats["PwrGood"].sum() / len(sim_stats["PwrGood"]))
 
     # calculate two kinds of efficiency
     P_inp_max = float((ivcurve["Voltage [V]"] * ivcurve["Current [A]"]).max())
@@ -62,9 +62,16 @@ for name, path in solar_paths.items():
     durations = timestamps[1:] - timestamps[:-1]
     time_total = timestamps[-1] - timestamps[0]
     filter_on = bat_ok == 1
-
-    result_eval["rate_per_min"].append(np.sum(filter_on) / time_total * 60.0)
-    result_eval["durations_on"].append(durations[filter_on[1:]])
+    switches_n = np.sum(filter_on)
+    if time_total < 0.5 * eval_runtime:
+        print("discarding calculated t_total")
+        time_total = eval_runtime
+        switches_n += 1  # attempt to include the first and last discarded entries
+    result_eval["rate_per_min"].append(switches_n / time_total * 60.0)
+    durations_on = durations[filter_on[:-1]]
+    if durations_on.shape[0] < 1:
+        durations_on = [time_total]
+    result_eval["durations_on"].append(durations_on)
 
 
 fig, axs = plt.subplots(4, 1, sharex="all", figsize=(10, 2 * 6), layout="tight")

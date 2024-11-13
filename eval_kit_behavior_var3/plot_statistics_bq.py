@@ -17,37 +17,50 @@ result_eval: dict = {
     "efficiency2": [],
 }
 
-R_out = 984  # measured with multimeter
+R_out = 1000
 
 for name in bq_names:
     # first cmd throws away 1st & last entry to avoid partially sampled durations
-    data = get_bq_digital(name).iloc[1:-1, :]
+    data_digital = get_bq_digital(name).iloc[1:-1, :]
+    data_analog = get_bq_analog(name)
+    timstamps_analog = data_analog["Time [s]"].to_numpy()
+    eval_runtime = timstamps_analog[-1] - timstamps_analog[0]
+
     # generate Stats
-    timestamps = data["Time [s]"].to_numpy()
+    timestamps = data_digital["Time [s]"].to_numpy()
     if timestamps.shape[0] < 2:
         print(f"skipping {name} due to low BAT-OK activity")
         continue
     durations = timestamps[1:] - timestamps[:-1]
     time_total = timestamps[-1] - timestamps[0]
-    data = data.iloc[:-1, :]  # last value is unusable for this
-    data["duration"] = durations
-    filter_on = data["BAT_OK"] == 1
-    durations_on = data.loc[filter_on, "duration"].to_numpy()
+    data_digital = data_digital.iloc[:-1, :]  # last value is unusable for this
+    data_digital["duration"] = durations
+    filter_on = data_digital["BAT_OK"] == 1
+    switches_n = np.sum(filter_on)
+
+    if time_total < 0.5 * eval_runtime:
+        print("discarding calculated t_total")
+        time_total = eval_runtime
+        switches_n += 1  # attempt to include the first and last discarded entries
+
+    durations_on = data_digital.loc[filter_on, "duration"].to_numpy()
+    if durations_on.shape[0] < 1:
+        durations_on = [time_total]
     duty_on = 100 * durations_on.sum() / time_total
-    rate_per_min = filter_on.sum() / time_total * 60.0
+    rate_per_min = switches_n / time_total * 60.0
     print(
         f"{name}, duty = {duty_on:.1f} %, "
         f"switch_rate = {rate_per_min:.3f} n/min, "
-        f"on-time min {1000*durations_on.min():.2f} ms, "
-        f"mean {1000*durations_on.mean():.2f} ms, "
-        f"max {1000*durations_on.max():.2f} ms"
+        f"on-time min {1000 * durations_on.min():.2f} ms, "
+        f"mean {1000 * durations_on.mean():.2f} ms, "
+        f"max {1000 * durations_on.max():.2f} ms"
     )
     # efficiency - combined with ivcurve
     ivcurve = get_ivcurve(name[:8])
     P_inp_max = (ivcurve["Voltage [V]"] * ivcurve["Current [A]"]).max()
 
-    data_analog = get_bq_analog(name)
-
+    # P_out = data_analog["V_OUT"] * data_analog["V_OUT"] / R_out
+    # duration = data_analog["Time [s]"].iloc[-1] - data_analog["Time [s]"].iloc[0]
     i_array = ivcurve["Current [A]"].to_numpy()
     v_array = ivcurve["Voltage [V]"].to_numpy()
 
@@ -67,7 +80,6 @@ for name in bq_names:
     result_eval["durations_on"].append(durations_on)
     result_eval["efficiency1"].append(100 * P_out_mean / P_inp_mean)
     result_eval["efficiency2"].append(100 * P_out_mean / P_inp_max)
-
 
 fig, axs = plt.subplots(4, 1, sharex="all", figsize=(10, 2 * 6), layout="tight")
 fig.suptitle("BQ25570 Eval Kit Characteristics")
@@ -89,7 +101,7 @@ axs[2].set_yscale("log")
 axs[3].set_ylabel("Efficiency [%]")
 axs[3].plot(result_eval["intensity"], result_eval["efficiency1"])
 axs[3].plot(result_eval["intensity"], result_eval["efficiency2"])
-axs[3].legend(["vs. real Input", "vs. max of IVCurve"], loc="lower right")
+axs[3].legend(["vs. actual Input", "vs. max of IVCurve"], loc="lower right")
 axs[3].set_xlabel("LED-Intensity [%]")
 axs[3].set_xticks(np.arange(2, 23, 2))
 
