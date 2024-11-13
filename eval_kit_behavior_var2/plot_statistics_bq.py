@@ -9,7 +9,6 @@ from matplotlib import pyplot as plt
 
 
 def generator_bq() -> dict:
-
     R_out = 1000
 
     result_eval: dict = {

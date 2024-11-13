@@ -1,13 +1,12 @@
 from pathlib import Path
 
 import numpy as np
-
 from matplotlib import pyplot as plt
+from plot_statistics_bq import generator_bq
+from plot_statistics_vsrc import generator_vsrc
 
 from eval_kit_behavior_var2.shepherd_cfg_bq import cfg_bq25570_eval
 from eval_kit_behavior_var3.shepherd_cfg_bq import cfg_bq25570_base
-from plot_statistics_bq import generator_bq
-from plot_statistics_vsrc import generator_vsrc
 
 if __name__ == "__main__":
     result_bq = generator_bq()

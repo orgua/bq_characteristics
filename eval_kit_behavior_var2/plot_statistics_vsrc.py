@@ -1,18 +1,16 @@
 from pathlib import Path
 
 import numpy as np
-from shepherd_core.data_models import VirtualSourceConfig
-
 from data_solar import data_paths as solar_paths
 from data_solar import get_ivcurve
 from matplotlib import pyplot as plt
 from shepherd_cfg_bq import cfg_bq25570_eval
+from shepherd_core.data_models import VirtualSourceConfig
 from shepherd_core.vsource import ResistiveTarget
 from shepherd_sim_vsrc import simulate_source
 
 
 def generator_vsrc(config: VirtualSourceConfig) -> dict:
-
     target = ResistiveTarget(R_Ohm=1000, controlled=False)
     eval_runtime = 50
 

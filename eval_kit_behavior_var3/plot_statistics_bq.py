@@ -9,7 +9,6 @@ from matplotlib import pyplot as plt
 
 
 def generator_bq() -> dict:
-
     R_out = 984  # measured with multimeter
 
     result_eval: dict = {
