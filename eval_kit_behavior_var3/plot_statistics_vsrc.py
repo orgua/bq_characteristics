@@ -18,7 +18,7 @@ result_eval: dict = {
     "efficiency2": [],
 }
 
-target = ResistiveTarget(R_Ohm=1000, controlled=True)
+target = ResistiveTarget(R_Ohm=984, controlled=True)
 eval_runtime = 50
 
 for name, path in solar_paths.items():

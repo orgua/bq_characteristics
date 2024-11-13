@@ -10,10 +10,11 @@ cfg_bq25570_base = VirtualSourceConfig(
         name="mppt_bq_solar",
         # rising=False,
         enable_linear_extrapolation=False,  # disable newer feature
-        samples_n=1000,
+        samples_n=900,
         # TODO: fixes bug in CoreLib
         #  - samples_n is still default, so
         #  - voltage_step_mV = (5000 - 0) / 7 with 7 as sample_n (=8) - 1
+        setpoint_n=0.8,
     ),
     enable_feedback_to_hrv=False,  # disable newer feature
     # eval board spec & modification
@@ -40,11 +41,15 @@ cfg_bq25570_eval = VirtualSourceConfig(
         enable_linear_extrapolation=True,
         interval_ms=16650,  # from recording
         duration_ms=255,  # from recording
-        samples_n=1000,  # TODO: fixes bug in CoreLib
+        samples_n=900,  # TODO: fixes bug in CoreLib
+        setpoint_n=0.8,
     ),
     enable_feedback_to_hrv=False,  # disable newer feature
     # eval board spec & modification
-    C_intermediate_uF=80,
+    C_intermediate_uF=76.0,
+    # Voltage Bias of Cap:
+    # 79.8 uF @ 3.8 V
+    # 67.2 uF @ 5.2 V
     V_intermediate_init_mV=4300,
     V_intermediate_max_mV=5220,
     V_intermediate_enable_threshold_mV=4430,

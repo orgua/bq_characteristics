@@ -17,7 +17,7 @@ result_eval: dict = {
     "efficiency2": [],
 }
 
-R_out = 1000
+R_out = 984 # measured with multimeter
 
 for name in bq_names:
     # first cmd throws away 1st & last entry to avoid partially sampled durations

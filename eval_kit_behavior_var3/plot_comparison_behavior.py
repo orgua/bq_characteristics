@@ -13,7 +13,7 @@ from shepherd_sim_vsrc import simulate_source
 
 # config - mainly for sim
 path_here = Path(__file__).parent
-target = ResistiveTarget(R_Ohm=1000, controlled=True)
+target = ResistiveTarget(R_Ohm=984, controlled=True)
 eval_runtime = 20
 
 for name, path in solar_paths.items():
@@ -73,8 +73,8 @@ for name, path in solar_paths.items():
     axs[2].legend(["Sim", "Eval"], loc="upper right")
 
     axs[3].set_ylabel("PwrGood [n]")
-    axs[3].plot(sim_stats["time"], sim_stats["PwrGood"])
-    axs[3].plot(eval_pwrgd["Time [s]"], eval_pwrgd["BAT_OK"])
+    axs[3].plot(sim_stats["time"], 0.95 * sim_stats["PwrGood"] + 1)
+    axs[3].plot(eval_pwrgd["Time [s]"], 0.95 * eval_pwrgd["BAT_OK"])
     axs[3].legend(["Sim", "Eval"], loc="upper right")
 
     axs[4].set_ylabel("Power Sim [mW]")

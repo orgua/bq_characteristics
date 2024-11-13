@@ -23,7 +23,7 @@ data_ts_voc: dict = {  # timestamp of first recorded VOC-meas
     "LED  8 %, 1k Load": 14.005,
     "LED 10 %, 1k Load": 3.363,
     "LED 12 %, 1k Load": 13.031,
-    "LED 14 %, 1k Load": 14.453,
+    "LED 14 %, 1k Load": 13.453,
     "LED 16 %, 1k Load": 14.589,
     "LED 18 %, 1k Load": 15.508,
     "LED 20 %, 1k Load": 22.974,
