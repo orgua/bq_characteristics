@@ -9,11 +9,7 @@ Experiment similar to `_Var2`-measurements, but with
 
 Results are similar to `_Var2`, but with a slightly higher efficiency.
 
-![BQ-char](plot_statistics_bq.svg)
-
-### VSource
-
-![VSrc-char](plot_statistics_vsrc.svg)
+![ComparisonStats](plot_statistics_comparison.svg)
 
 ### Comparison of Behavior
 

@@ -84,11 +84,7 @@ Analysing `BAT_OK` gives us:
 
 Adding the related `IVCurve` and knowledge of the 1k resistive load gives us also needed insight to calculate the efficiency at that set-point
 
-![BQ-char](plot_statistics_bq.svg)
-
-### VSource
-
-![VSrc-char](plot_statistics_vsrc.svg)
+![ComparisonStats](plot_statistics_comparison.svg)
 
 ### Comparison of Behavior
 
