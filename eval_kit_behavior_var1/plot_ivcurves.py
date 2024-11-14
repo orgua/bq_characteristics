@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import numpy as np
-
 from data_solar import data_names as ivcurve_names
 from data_solar import get_ivcurve
 from matplotlib import pyplot as plt
