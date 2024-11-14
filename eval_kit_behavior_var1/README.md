@@ -71,13 +71,17 @@ NOTE: all measurements are started with a disabled LED to show startup-behavior 
 
 ### Match with Shepherds VSrc
 
-While the VSrc could be configured to loosely match the behavior for 900mA LED-current
+While the VSrc could be configured to loosely match the behavior for 400mA LED-current
 
-![BQ900](./bq_plot_900mA.png)
+![BQ400](./plot_comparison_behavior.LED%20%20400mA.png)
 
-The same config does not work for 400mA LED-current
+And also the saturated 1100mA LED-Current:
 
-![BQ400](./bq_plot_900mA.png)
+![BQ1100](./plot_comparison_behavior.LED%201100mA.png)
+
+The same config does not work for 900mA LED-current
+
+![BQ700](./plot_comparison_behavior.LED%20%20900mA.png)
 
 ### Capacitor
 
@@ -89,7 +93,7 @@ Comparing the MLCC to a tantal, we see, that the tantal-capacitor is almost beha
 ![CapCharge](./capacitor_plot_charge.png)
 ![CapDisCharge](./capacitor_plot_dischrg.png)
 
-Wenn looking at the self-discharge the tantal-capacitor shows a much lower discharge.
+When looking at the self-discharge the tantal-capacitor shows a much lower discharge.
 
 ![CapDis](./capacitor_plot_selfdis.png)
 
