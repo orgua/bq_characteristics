@@ -52,6 +52,10 @@ for iter, path in enumerate(paths):
     for _j in range(cutoff_bin[iter]-1,-1,-1):
         curve_i[_j] = max(0.0, float((1+1/4)*curve_i[_j+1] - curve_i[_j+5]/4))
 
+    # fix voltage-ramp
+    curve_v[curve_v > 5.0] = 0.0
+    curve_v[0:curve_v.argmax()] = np.max(curve_v)
+
     separator = "; "
     csv_name = path.stem.split(".")[0]
     csv_path = path.with_stem(csv_name).with_suffix(".ivcurve.csv")
