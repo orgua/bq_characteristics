@@ -18,6 +18,6 @@ data_paths: dict = {name: path_here / value for name, value in data.items()}
 
 
 def get_capacitor(name: str) -> pd.DataFrame:
-    _data = pd.read_pickle(data_paths[name], compression="zstd")
+    _data = pd.read_pickle(data_paths[name], compression="zstd")  # noqa: S301
     _data["Time [s]"] -= 0.016364380
     return _data

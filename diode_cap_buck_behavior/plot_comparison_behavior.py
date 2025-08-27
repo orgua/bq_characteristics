@@ -36,7 +36,8 @@ for name, path in solar_paths.items():
             break
 
     if eval_stats is None or eval_pwrgd is None:
-        raise ValueError(f"No bq-recording was found for {name}")
+        msg = f"No bq-recording was found for {name}"
+        raise ValueError(msg)
 
     # Align data
     eval_stats["Time [s]"] = eval_stats["Time [s]"]

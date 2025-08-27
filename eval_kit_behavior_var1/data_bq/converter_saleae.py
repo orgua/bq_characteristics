@@ -1,11 +1,12 @@
-"""Convert saleae-measurements to pandas DataFrame
+"""Convert saleae-measurements to pandas DataFrame.
+
 - direct import seems not to exist
 - manual steps:
-    - open .sal file,
-    - choose 'file', 'export raw data',
-    - select desired channels, export to csv, WITHOUT ISO timestamps (to get relative timing)
-    - this produces an analog.csv & digital.csv
-    - rename these to something like 'measurment abc.analog.csv'
+- open .sal file,
+- choose 'file', 'export raw data',
+- select desired channels, export to csv, WITHOUT ISO timestamps (to get relative timing)
+- this produces an analog.csv & digital.csv
+- rename these to something like 'measurement abc.analog.csv'
 - to compress the data it will be imported as dataFrame and pickled
 """
 

@@ -1,4 +1,6 @@
-"""Sources:
+"""Model for boost efficiency - used to fit parameters to measurement date.
+
+Sources:
 - https://www.electronicdesign.com/technologies/power/article/21190563/boost-converter-efficiency-through-accurate-calculations
 - slva372d.pdf - Basic Calculation of a Boost Converter's Power Stage
 - sluuaa7a.pdf - BQ25570 EVM users guide
@@ -31,7 +33,7 @@ def efficiency_boost_model(
         duty = 1 - V_In * eta / V_Out
         I_Out = I_In * (1 - duty)
         P_In = V_In * I_In
-        P_Out = V_Out * I_Out
+        # P_Out = V_Out * I_Out
 
         # dI_L = V_In * duty / (f_SW * L_L)
         # I_out_max = (I_sw_max - dI_L/2) * (1-duty)
@@ -69,9 +71,9 @@ def efficiency_boost_fit(
     I_ic_quiet: float,
     t_trans: float,  # t_rise + t_fall
 ) -> np.ndarray:
-    len = xdata.shape[0]
-    result = np.zeros(len)
-    for index in range(len):
+    xlen = xdata.shape[0]
+    result = np.zeros(xlen)
+    for index in range(xlen):
         result[index] = efficiency_boost_model(
             V_In=xdata[index, 0],
             I_In=xdata[index, 1],

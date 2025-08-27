@@ -8,7 +8,8 @@ The simulation recreates an observer-cape, the virtual Source and a virtual targ
 
 The output file can be analyzed and plotted with shepherds tool suite.
 
-NOTE: The Config is heavily optimized to match the 900mA BQ-behavior, BUT does not match the 400mA at all...
+NOTE: The Config is heavily optimized to match the 900mA BQ-behavior,
+      BUT does not match the 400mA at all...
 """
 
 from contextlib import ExitStack
@@ -120,7 +121,7 @@ def simulate_source(
 
     stack.close()
     stats_internal = stats_internal[:stats_sample, :]
-    stats_internal = pd.DataFrame(
+    return pd.DataFrame(
         stats_internal,
         columns=[
             "time",
@@ -138,4 +139,3 @@ def simulate_source(
             "PwrGood",
         ],
     )
-    return stats_internal

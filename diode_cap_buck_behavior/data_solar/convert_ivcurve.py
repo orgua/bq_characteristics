@@ -1,4 +1,5 @@
-"""
+"""Take hdf5-curves and convert them to csv.
+
 NOTE: the generated ivcurves were manually altered afterward
  - remove first line (from previous ivcurve)
  - remove next lines with max voltage (>5V)
@@ -32,7 +33,7 @@ paths = [
 
 cutoff_bin = list(range(90, 50, -2))
 
-for iter, path in enumerate(paths):
+for _i, path in enumerate(paths):
     with Reader(path, verbose=False) as reader:
         samples = reader.get_window_samples()
         repetitions = int(reader.ds_time.shape[0] / samples)
@@ -49,7 +50,7 @@ for iter, path in enumerate(paths):
         curve_i = cal.current.raw_to_si(curve_i) / repetitions
 
     # fix spike at t0 and begin of current-curve
-    for _j in range(cutoff_bin[iter] - 1, -1, -1):
+    for _j in range(cutoff_bin[_i] - 1, -1, -1):
         curve_i[_j] = max(0.0, float((1 + 1 / 4) * curve_i[_j + 1] - curve_i[_j + 5] / 4))
 
     # fix voltage-ramp

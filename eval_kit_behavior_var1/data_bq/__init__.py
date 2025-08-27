@@ -30,11 +30,11 @@ paths_digital: dict = {
 
 
 def get_bq_analog(name: str) -> pd.DataFrame:
-    return pd.read_pickle(paths_analog[name], compression="zstd")
+    return pd.read_pickle(paths_analog[name], compression="zstd")  # noqa: S301
 
 
-def get_bq_digital(name: str, plottable: bool = False) -> pd.DataFrame:
-    pwr_good = pd.read_pickle(paths_digital[name], compression="zstd")
+def get_bq_digital(name: str, *, plottable: bool = False) -> pd.DataFrame:
+    pwr_good = pd.read_pickle(paths_digital[name], compression="zstd")  # noqa: S301
     if not plottable:
         return pwr_good
     # allow visualisation for digital data

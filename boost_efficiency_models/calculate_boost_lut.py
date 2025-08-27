@@ -15,8 +15,6 @@ i_inp_mid = [i_inp_min / 2 * 2**x for x in range(12)]
 LUT_inp_eff_model: list = []
 
 for v_inp in v_inp_mid:
-    row: list = []
-    for i_inp in i_inp_mid:
-        row.append(round(efficiency_boost_datasheet(v_inp, i_inp, v_out), 3))
+    row: list = [round(efficiency_boost_datasheet(v_inp, i_inp, v_out), 3) for i_inp in i_inp_min]
     LUT_inp_eff_model.append(row)
     print(row)

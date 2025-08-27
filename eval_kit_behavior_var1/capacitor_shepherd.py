@@ -1,7 +1,7 @@
-"""Simulates charging and discharging of the capacitor-model integrated into shepherd.
+"""Simulate charging and discharging of the capacitor-model integrated into shepherd.
+
 - the capacitor-model is encapsulated in .update_cap_storage()
 - only uses VirtualConverterModel-class to initialize parameters
-
 """
 
 import numpy as np
