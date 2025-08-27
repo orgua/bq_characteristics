@@ -35,19 +35,19 @@ results_processed: list = []
 path_here = Path(__file__).parent / "data_board_B_boost_LUT"
 for v_output in vs_output:
     path_result = path_here / f"boost_lut_raw_vout{v_output:.3f}.csv"
-    v_output = [v_output]
+    v_outputs = [v_output]
 
     # measure or load
     if path_result.exists():
         results_pd = pd.read_csv(path_result, sep=";", decimal=",")
     else:
-        results_pd = smu_measure_boost(vs_input, is_input, v_output)
+        results_pd = smu_measure_boost(vs_input, is_input, v_outputs)
         results_pd.to_csv(path_result, sep=";", decimal=",", index=False)
 
     # process graph
     fig = plt.figure(figsize=(10, 8), layout="tight")
 
-    for v_out, v_inp in product(v_output, vs_input):
+    for v_out, v_inp in product(v_outputs, vs_input):
         data: pd.DataFrame = results_pd.copy(deep=True)
         data = data.loc[(results_pd["V_out_nom"] == v_out)]
         data = data.loc[(results_pd["V_inp_nom"] == v_inp)]

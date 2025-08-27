@@ -45,7 +45,7 @@ for vo in v_out:
     lut_boost_model_fit: list = []
     for vi in v_inp_mid:
         for ii in i_inp_mid:
+            print(f"Calculating [{vo}, {vi}, {ii}] (v_out, v_inp, i_inp)")
             # TODO: missing? never finished
-            pass
 
 print("done")

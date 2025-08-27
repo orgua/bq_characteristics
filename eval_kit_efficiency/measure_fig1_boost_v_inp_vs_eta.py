@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 from smu_measure import smu_measure_boost
 
 # CONFIG
@@ -35,8 +36,6 @@ else:
     results_pd.to_csv(path_result, sep=";", decimal=",", index=False)
 
 # graph
-
-from matplotlib import pyplot as plt
 
 fig = plt.figure(figsize=(10, 4), layout="tight")
 

@@ -7,7 +7,7 @@ from shepherd_core.vsource.target_model import TargetABC
 
 
 class DiodeTarget(TargetABC):
-    """Copy of shepherd-core with two bugfixes"""
+    """Copy of shepherd-core with two bugfixes."""
 
     def __init__(
         self,

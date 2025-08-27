@@ -26,7 +26,7 @@ def shp_cap_sim(
     R_inp_Ohm: float,
     runtime: float = 1,
 ) -> pd.DataFrame:
-    """Wrong approach - as the power-calc is only acceptable for the boost-case"""
+    """Wrong approach - as the power-calc is only acceptable for the boost-case."""
     cnv.V_mid_uV = U_start_V * 1e6
     cnv.P_out_fW = 0
     timestamps = np.arange(0.0, runtime, 1.0 / samplerate_sps_default)

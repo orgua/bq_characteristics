@@ -1,4 +1,5 @@
-"""Convert saleae-measurements to pandas DataFrame
+"""Convert saleae-measurements to pandas DataFrame.
+
 - direct import seems not to exist
 - manual steps:
     - open .sal file,

@@ -70,19 +70,19 @@ path_here = Path(__file__).parent / "data_board_A_boost_full"
 
 for vs_input in vs_inputs:
     path_result = path_here / f"boost_results_raw_vin{vs_input:.2f}.csv"
-    vs_input = [vs_input]
+    vs_inputs = [vs_input]
 
     # measure or load
     if path_result.exists():
         results_pd = pd.read_csv(path_result, sep=";", decimal=",")
     else:
-        results_pd = smu_measure_boost(vs_input, is_input, vs_output)
+        results_pd = smu_measure_boost(vs_inputs, is_input, vs_output)
         results_pd.to_csv(path_result, sep=";", decimal=",", index=False)
 
     # process graph
     fig = plt.figure(figsize=(10, 8), layout="tight")
 
-    for v_out, v_inp in product(vs_output, vs_input):
+    for v_out, v_inp in product(vs_output, vs_inputs):
         data: pd.DataFrame = results_pd.copy(deep=True)
         data = data.loc[(results_pd["V_out_nom"] == v_out)]
         data = data.loc[(results_pd["V_inp_nom"] == v_inp)]

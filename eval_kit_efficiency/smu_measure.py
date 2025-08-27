@@ -13,8 +13,8 @@ def smu_measure_boost(
     smu = SMU()
     results: list = []  # np.zeros(shape=(len(vs_input) * len(vs_output) * len(is_input), 8))
     total = len(vs_input) * len(vs_output) * len(is_input)
-    for index, (v_out, v_inp, i_inp) in tqdm(
-        enumerate(product(vs_output, vs_input, is_input)),
+    for v_out, v_inp, i_inp in tqdm(
+        product(vs_output, vs_input, is_input),
         total=total,
     ):
         # check if set-point is valid

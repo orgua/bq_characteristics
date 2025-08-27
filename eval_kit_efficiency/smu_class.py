@@ -1,4 +1,4 @@
-"""Simplified driver-class that configures the SMU for different tasks"""
+"""Simplified driver-class that configures the SMU for different tasks."""
 
 from keithley2600 import Keithley2600
 from keithley2600.keithley_driver import Keithley2600Base
@@ -6,9 +6,11 @@ from keithley2600.keithley_driver import KeithleyClass
 
 
 class SMU:
+    """Control-Class for the Keithley source measurement unit."""
+
     def __init__(
         self, ip: str = "10.0.0.24", pwrline_cycles: float = 8, *, mode_4wire: bool = True
-    ):
+    ) -> None:
         self.kth: Keithley2600Base = Keithley2600(f"TCPIP0::{ip}::INSTR")
         self.kth.reset()
         self.inp: KeithleyClass = self.kth.smua

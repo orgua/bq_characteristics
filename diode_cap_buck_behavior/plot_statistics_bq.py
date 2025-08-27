@@ -68,7 +68,7 @@ def generator_bq() -> dict:
 
         # look for nearest voltage in ivcurve and store corresponding current
         data_analog["I_IN"] = data_analog["V_IN"].apply(
-            lambda _v: i_array[(np.abs(v_array - _v)).argmin()]
+            lambda _v, ia=i_array, va=v_array: ia[(np.abs(va - _v)).argmin()]
         )
 
         P_inp = data_analog["V_IN"] * data_analog["I_IN"]

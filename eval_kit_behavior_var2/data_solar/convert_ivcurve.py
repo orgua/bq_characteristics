@@ -1,4 +1,5 @@
-"""
+"""Take hdf5-curves and convert them to csv.
+
 NOTE: the generated ivcurves were manually altered afterward
  - remove first line (from previous ivcurve)
  - remove next lines with max voltage (>5V)
