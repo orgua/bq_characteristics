@@ -53,9 +53,9 @@ def generator_bq() -> dict:
         print(
             f"{name}, duty = {duty_on:.1f} %, "
             f"switch_rate = {rate_per_min:.3f} n/min, "
-            f"on-time min {1000*durations_on.min():.2f} ms, "
-            f"mean {1000*durations_on.mean():.2f} ms, "
-            f"max {1000*durations_on.max():.2f} ms"
+            f"on-time min {1000 * durations_on.min():.2f} ms, "
+            f"mean {1000 * durations_on.mean():.2f} ms, "
+            f"max {1000 * durations_on.max():.2f} ms"
         )
         # efficiency - combined with ivcurve
         ivcurve = get_ivcurve(name[:8])
@@ -115,7 +115,7 @@ if __name__ == "__main__":
         # deactivates offset-creation for ax-ticks
         # ax.get_yaxis().get_major_formatter().set_useOffset(False)
         ax.get_xaxis().get_major_formatter().set_useOffset(False)
-        ax.grid(True)
+        ax.grid(visible=True)
 
     # TODO: add PwrIn, PwrOut
 

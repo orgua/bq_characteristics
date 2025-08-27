@@ -35,7 +35,7 @@ for vi in v_inp:
     plt.xscale("log")
     plt.ylabel("efficiency [n]")
     plt.yticks([y / 10 for y in range(11)])
-    plt.grid(True)
+    plt.grid(visible=True)
     plt.show()
     plt.close()
     print(f"{path_data.stem}_VCap{vi}V:")

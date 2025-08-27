@@ -38,7 +38,7 @@ plt.ylabel("current [A]")
 plt.xticks(np.arange(U_start, U_end, 0.5))
 plt.yticks(np.arange(0, 1, 0.2))
 plt.ylim(bottom=0.0, top=1.0)
-plt.grid(True)
+plt.grid(visible=True)
 plt.legend(loc="lower right")
 plt.tight_layout()
 # force direct values on axis

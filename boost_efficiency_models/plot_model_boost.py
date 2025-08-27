@@ -37,6 +37,6 @@ for _vc in v_cap:
     plt.xlabel("I_Input [n]")
     plt.ylabel("V_Input [n]")
     plt.axis("equal")
-    suffix = f".VCap{str(round(_vc,2)).replace(".", "V")}.png"
+    suffix = f".VCap{str(round(_vc, 2)).replace('.', 'V')}.png"
     plt.savefig(Path(__file__).with_suffix(suffix), bbox_inches="tight")
     plt.close(fig)

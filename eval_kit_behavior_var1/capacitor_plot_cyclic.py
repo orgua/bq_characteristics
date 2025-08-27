@@ -19,7 +19,7 @@ plt.xticks(np.arange(0.0, runtime + 0.1, 0.1))
 plt.yticks(np.arange(0.0, 5.6, 0.5))
 plt.ylim(bottom=2.5)  # , top=1.0)
 plt.xlim(left=0.0, right=0.6)
-plt.grid(True)
+plt.grid(visible=True)
 plt.legend(loc="lower right")
 plt.tight_layout()
 # force direct values on axis

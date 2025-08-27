@@ -13,14 +13,14 @@ cfg_bq25570_base = VirtualSourceConfig(
         # TODO: fixes bug in CoreLib
         #  - samples_n is still default, so
         #  - voltage_step_mV = (5000 - 0) / 7 with 7 as sample_n (=8) - 1
-        voltage_mV=4900,
+        voltage_mV=4800,
     ),
     enable_feedback_to_hrv=False,  # disable newer feature
     # eval board spec & modification
     enable_boost=False,
     V_input_drop_mV=400,
     R_input_mOhm=100,
-    LUT_input_efficiency= 12 * [12 * [1.00]],  # might be irrelevant
+    LUT_input_efficiency=12 * [12 * [1.00]],  # might be irrelevant
     # below is unchanged config from _var3
     C_intermediate_uF=100,
     V_intermediate_init_mV=4300,

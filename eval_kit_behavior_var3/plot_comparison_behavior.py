@@ -94,4 +94,4 @@ for name, path in solar_paths.items():
     plt.close(fig)
     plt.clf()
 
-    print(f"PowerGood - Ratio: {sim_stats["PwrGood"].sum() / sim_stats["PwrGood"].shape[0]:.3f}")
+    print(f"PowerGood - Ratio: {sim_stats['PwrGood'].sum() / sim_stats['PwrGood'].shape[0]:.3f}")

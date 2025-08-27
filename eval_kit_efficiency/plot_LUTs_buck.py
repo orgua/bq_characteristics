@@ -21,7 +21,7 @@ with path_data.open() as file_data:
     plt.ylabel("Efficiency [n]")
     plt.yticks([y / 10 for y in range(11)])
     plt.ylim(bottom=0.0, top=1.0)
-    plt.grid(True)
+    plt.grid(visible=True)
     plt.legend(loc="lower right")
     plt.savefig(path_data.with_suffix(".svg"))
     plt.close(fig)

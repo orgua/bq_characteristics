@@ -30,7 +30,7 @@ paths = [
     path_here / "LED_035pc.h5",
 ]
 
-cutoff_bin = list(range(90,50,-2))
+cutoff_bin = list(range(90, 50, -2))
 
 for iter, path in enumerate(paths):
     with Reader(path, verbose=False) as reader:
@@ -49,12 +49,12 @@ for iter, path in enumerate(paths):
         curve_i = cal.current.raw_to_si(curve_i) / repetitions
 
     # fix spike at t0 and begin of current-curve
-    for _j in range(cutoff_bin[iter]-1,-1,-1):
-        curve_i[_j] = max(0.0, float((1+1/4)*curve_i[_j+1] - curve_i[_j+5]/4))
+    for _j in range(cutoff_bin[iter] - 1, -1, -1):
+        curve_i[_j] = max(0.0, float((1 + 1 / 4) * curve_i[_j + 1] - curve_i[_j + 5] / 4))
 
     # fix voltage-ramp
     curve_v[curve_v > 5.0] = 0.0
-    curve_v[0:curve_v.argmax()] = np.max(curve_v)
+    curve_v[0 : curve_v.argmax()] = np.max(curve_v)
 
     separator = "; "
     csv_name = path.stem.split(".")[0]

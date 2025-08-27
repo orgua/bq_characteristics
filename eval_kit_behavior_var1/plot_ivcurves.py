@@ -31,7 +31,7 @@ for ax in axs:
     ax.get_yaxis().get_major_formatter().set_useOffset(False)
     ax.get_xaxis().get_major_formatter().set_useOffset(False)
     # add grid
-    ax.grid(True)
+    ax.grid(visible=True)
 
 
 # plt.savefig(Path(__file__).with_suffix(".png"))

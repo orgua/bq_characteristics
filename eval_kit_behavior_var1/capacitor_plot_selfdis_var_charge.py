@@ -19,7 +19,7 @@ plt.xticks(np.arange(0.0, runtime + 0.1, 5))
 plt.yticks(np.arange(0.0, 5.6, 0.2))
 plt.ylim(bottom=1.5, top=5.0)
 # plt.yscale("log")
-plt.grid(True)
+plt.grid(visible=True)
 plt.legend(loc="upper right")
 plt.tight_layout()
 # force direct values on axis

@@ -59,7 +59,7 @@ if __name__ == "__main__":
         # deactivates offset-creation for ax-ticks
         # ax.get_yaxis().get_major_formatter().set_useOffset(False)
         ax.get_xaxis().get_major_formatter().set_useOffset(False)
-        ax.grid(True)
+        ax.grid(visible=True)
 
     # TODO: add PwrIn, PwrOut
 

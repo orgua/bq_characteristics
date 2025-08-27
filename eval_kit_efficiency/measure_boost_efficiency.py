@@ -113,7 +113,7 @@ for vs_input in vs_inputs:
     # plt.xticks([x/10 for x in range(0, 31, 2)])
     plt.ylabel("efficiency [n]")
     plt.yticks([y / 10 for y in range(11)])
-    plt.grid(True)
+    plt.grid(visible=True)
     plt.legend(loc="lower right")
     plt.savefig(path_result.with_suffix(".svg"))
     plt.close(fig)

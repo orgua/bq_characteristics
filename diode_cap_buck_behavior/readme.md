@@ -2,7 +2,7 @@
 
 This setup is combining the following parts (from front to back):
 
-- Light-source is still the Elgato Keylight in a lightbox 
+- Light-source is still the Elgato Keylight in a lightbox
   - controllable with integer percent-values
 - Solarcell is the [Anysolar SLMD121H9L](https://www.digikey.de/en/products/detail/anysolar-ltd/SLMD121H09L/2754277)
   - VOC-MAX is 5.76 V (at 1 Sun)

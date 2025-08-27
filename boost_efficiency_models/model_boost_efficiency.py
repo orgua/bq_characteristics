@@ -151,13 +151,13 @@ if __name__ == "__main__":
             V_IN = vcc_mV * 1e-3
             vin.append(V_IN)
             eta.append(efficiency_boost_datasheet(V_IN, _ii, _vs))
-        plt.plot(vin, eta, label=f"VStor={_vs}V, i_inp={_ii*1e6}uA")
+        plt.plot(vin, eta, label=f"VStor={_vs}V, i_inp={_ii * 1e6}uA")
 
     plt.xlabel("V_In [V]")
     plt.xticks([x / 10 for x in range(0, 31, 2)])
     plt.ylabel("efficiency [n]")
     plt.yticks([y / 10 for y in range(11)])
-    plt.grid(True)
+    plt.grid(visible=True)
     plt.legend(loc="lower right")
     # plt.show()
     plt.savefig(Path(__file__).with_suffix(".svg"))
