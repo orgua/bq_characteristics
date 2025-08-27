@@ -12,6 +12,7 @@ shepherd-data = "*"
 
 [dev-packages]
 pre-commit = "*"
+pre-commit-uv = "*"
 keithley2600 = "*"
 
 [pipenv]
